@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "scraper.ts",
+        "use": "@vercel/node",
+        "config": {
+          "includeFiles": "**/*.ts"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/",
+        "dest": "/scraper.ts"
+      }
+    ]
+  }
+  
