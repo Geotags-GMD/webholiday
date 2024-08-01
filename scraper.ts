@@ -36,6 +36,6 @@ export default async function handler(req: any, res: any) {
     res.status(200).json(holidays);
   } catch (error) {
     console.error('Error fetching the data:', error);
-    res.status(500).json({ error: 'Failed to fetch holidays' });
+    res.status(500).json({ error: 'Failed to fetch holidays', details: error });
   }
 }
