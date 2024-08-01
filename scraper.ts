@@ -1,7 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-// Get the current year
 const currentYear = new Date().getFullYear();
 const url = `https://publicholidays.ph/${currentYear}-dates/`;
 
@@ -11,7 +10,7 @@ interface Holiday {
   name: string;
 }
 
-async function fetchHolidays() {
+export default async function handler(req: any, res: any) {
   try {
     // Fetch the HTML of the page
     const { data } = await axios.get(url);
@@ -34,10 +33,9 @@ async function fetchHolidays() {
     });
 
     // Output the holidays in JSON format
-    console.log(JSON.stringify(holidays, null, 2));
+    res.status(200).json(holidays);
   } catch (error) {
     console.error('Error fetching the data:', error);
+    res.status(500).json({ error: 'Failed to fetch holidays' });
   }
 }
-
-fetchHolidays();
